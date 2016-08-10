@@ -5,6 +5,7 @@ reused in many of the other parser modules.
 import subprocess
 import tempfile
 import os
+import six
 
 import chardet
 
@@ -51,12 +52,12 @@ class BaseParser(object):
         """
         # only decode byte strings into unicode if it hasn't already
         # been done by a subclass
-        if isinstance(text, unicode):
+        if isinstance(text, str):
             return text
 
         # empty text? nothing to decode
         if not text:
-            return u''
+            return six.u('')
 
         # use chardet to automatically detect the encoding text
         max_confidence, max_encoding = 0.0, None
@@ -66,7 +67,7 @@ class BaseParser(object):
 
 class ShellParser(BaseParser):
     """The :class:`.ShellParser` extends the :class:`.BaseParser` to make
-    it easy to run external programs from the command line with
+    it easy to run external programs from the command line withi
     `Fabric <http://www.fabfile.org/>`_-like behavior.
     """
 
